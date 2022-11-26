@@ -2,8 +2,8 @@ package com.Capstone.JavaCapstone;
 
 import com.Capstone.JavaCapstone.entity.Lists;
 import com.Capstone.JavaCapstone.entity.Users;
-import com.Capstone.JavaCapstone.repo.ListsRepo;
-import com.Capstone.JavaCapstone.repo.UsersRepo;
+import com.Capstone.JavaCapstone.repositories.ListsRepo;
+import com.Capstone.JavaCapstone.repositories.UserRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class JavaCapstoneApplicationTests {
 
 	@Autowired
-	UsersRepo usersRepo;
+  UserRepo usersRepo;
 
 	@Autowired
 	ListsRepo listsRepo;
@@ -26,7 +26,7 @@ class JavaCapstoneApplicationTests {
 
 		Users user1 = new Users();
 		user1.setFirstName("Benjamin");
-		user1.setLastName("Cook");
+		user1.setLastName("CookType");
 		user1.setEmail("benji1313@gmail.com");
 		user1.setPassword("password");
 

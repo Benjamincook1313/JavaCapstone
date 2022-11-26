@@ -14,7 +14,7 @@ import java.util.Collection;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Groups {
+public class Group {
   @Id
   @GeneratedValue
   private Long id;
@@ -23,22 +23,22 @@ public class Groups {
   @OneToOne(cascade=CascadeType.ALL)
 //  @JoinColumn(name="admin1")
   @JsonBackReference
-  private Users admin1;
+  private User admin1;
 
   @OneToOne(cascade=CascadeType.ALL)
   @JoinColumn(name="admin2")
 //  @JsonBackReference
-  private Users admin2;
+  private User admin2;
 
   @ManyToMany(cascade=CascadeType.ALL)
   @JoinTable(
-      name="groups_members",
+      name="group_members",
       joinColumns=@JoinColumn(name="group_id"),
       inverseJoinColumns=@JoinColumn(name="member")
   )
-  private Collection<Users> member;
+  private Collection<User> member;
 
-  public Groups(String groupName, Users admin1) {
+  public Group(String groupName, User admin1) {
     this.groupName = groupName;
     this.admin1 = admin1;
   }

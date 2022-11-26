@@ -1,4 +1,4 @@
-package com.Capstone.JavaCapstone.repo;
+package com.Capstone.JavaCapstone.repositories;
 
 import com.Capstone.JavaCapstone.entity.Lists;
 import org.springframework.data.jpa.repository.JpaRepository;

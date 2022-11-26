@@ -1,14 +1,12 @@
 package com.Capstone.JavaCapstone.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.Capstone.JavaCapstone.entity.listTypes.ListType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
@@ -20,21 +18,25 @@ public class Lists {
   @Id
   @GeneratedValue
   private Long id;
+  @Column(nullable = false)
   private String title;
-  @ManyToOne
-  @JoinColumn(name="owner")
-//  @JsonBackReference
-  private Users user;
 
+  @Column(columnDefinition = "varchar default 'ITEM'")
+  private ListType type;
   @ManyToOne
-  @JoinColumn(name="group_id")
-  private Groups group;
+  @JoinColumn(name="owner", nullable = false)
+//  @JsonBackReference
+  private User user;
+
+//  @ManyToOne
+//  @JoinColumn(name="group_id")
+//  private Groups group;
 
 //  @OneToMany(mappedBy="lists", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 //  @JsonManagedReference
 //  private List<Items> items;
 
-  public Lists(String title, Users user) {
+  public Lists(String title, User user) {
     this.title = title;
     this.user = user;
   }

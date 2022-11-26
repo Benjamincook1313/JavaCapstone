@@ -1,42 +1,41 @@
 package com.Capstone.JavaCapstone.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.Collection;
+import javax.validation.constraints.Email;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Users {
+@Table(name="users")
+public class User {
   @Id
   @GeneratedValue
   @JsonManagedReference
   private Long id;
+  @Column(nullable = false)
   private String firstName;
+  @Column(nullable = false)
   private String lastName;
+  @Column(nullable = false)
+  @Email
   private String email;
-  @Column(name="passHash")
+
+//  @Size(min=8)
+//  @NotContainWhitespace
+//  @ContainSpecial
+//  @ContainDigit
+  @Column(name="passHash", nullable = false)
   private String password;
 
 //  @ManyToMany(mappedBy="users", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-//  private Collection<Groups> groups;
+//  private Collection<Group> group;
 
 //  @OneToMany(mappedBy="user", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 //  @JsonManagedReference
 //  private List<Lists> list;
 
-
-  public Users(String firstName, String lastName, String email, String password) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
-    this.password = password;
-  }
 }

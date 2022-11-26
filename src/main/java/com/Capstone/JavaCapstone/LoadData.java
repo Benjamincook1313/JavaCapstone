@@ -1,26 +1,21 @@
 package com.Capstone.JavaCapstone;
 
-import com.Capstone.JavaCapstone.entity.Lists;
-import com.Capstone.JavaCapstone.repo.ListsRepo;
-import com.Capstone.JavaCapstone.entity.Users;
-import com.Capstone.JavaCapstone.repo.UsersRepo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.Capstone.JavaCapstone.entity.User;
+import com.Capstone.JavaCapstone.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
 //@Component
 public class LoadData implements CommandLineRunner{
 
 //  private final Logger log = new LoggerFactory.getLogger(LoadData.class);
 
-    private final UsersRepo usersRepo;
+    private final UserRepo userRepo;
 //    private final ListsRepo listsRepo;
 
     @Autowired
-    public LoadData(UsersRepo usersRepo){
-      this.usersRepo = usersRepo;
+    public LoadData(UserRepo userRepo){
+      this.userRepo = userRepo;
     }
 
 //    @Autowired
@@ -31,8 +26,8 @@ public class LoadData implements CommandLineRunner{
     @Override
     public void run(String... args) throws Exception {
       // Add users
-      usersRepo.save(new Users("Benjamin", "Cook", "benji1313@gmail.com", "password"));
-      usersRepo.save(new Users("Lilly", "Cook", "lilly13@gmail.com", "password2"));
+      userRepo.save(new User("Benjamin", "Cook", "benji1313@gmail.com", "password"));
+      userRepo.save(new User("Lilly", "Cook", "lilly13@gmail.com", "password2"));
 
 //      listsRepo.save(new Lists("Snowboard", 1L));
 //      listsRepo.save(new Lists("Surf", 1L));
