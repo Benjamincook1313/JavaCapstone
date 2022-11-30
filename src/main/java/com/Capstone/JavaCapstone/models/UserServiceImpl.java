@@ -1,4 +1,4 @@
-package com.Capstone.JavaCapstone.services;
+package com.Capstone.JavaCapstone.models;
 
 import com.Capstone.JavaCapstone.services.UserService;
 import com.Capstone.JavaCapstone.dtos.UserDto;

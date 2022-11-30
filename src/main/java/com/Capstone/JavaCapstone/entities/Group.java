@@ -17,13 +17,13 @@ import java.util.Collection;
 @Table(name = "groups")
 public class Group {
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
   @Column(unique=true)
   private String name;
-  @OneToOne(cascade=CascadeType.ALL)
   @JsonBackReference
+  @OneToOne(cascade=CascadeType.ALL)
   private User admin1;
 
   @OneToOne(cascade=CascadeType.ALL)

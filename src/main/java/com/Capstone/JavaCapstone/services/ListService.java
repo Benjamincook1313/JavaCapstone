@@ -17,9 +17,9 @@ public interface ListService {
 
   // edit list patch mapping
   @Transactional
-  void updateList(Long listId, ListDto listDto);
+  List<String> updateList(Long listId, ListDto listDto);
 
   // delete list
   @Transactional
-  void deleteList(Long listId);
+  List<String> deleteList(Long listId);
 }

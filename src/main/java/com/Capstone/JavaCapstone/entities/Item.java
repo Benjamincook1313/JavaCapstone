@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Table(name="items")
 public class Item {
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
   @Column(nullable = false)
   private String item;
@@ -25,7 +25,6 @@ public class Item {
   @Column(columnDefinition="boolean default false")
   private Boolean crossedOff;
   private String description;
-  @JsonIgnore
   @ManyToOne
   @JoinColumn(name="list_id", nullable = false)
   private Lists list;

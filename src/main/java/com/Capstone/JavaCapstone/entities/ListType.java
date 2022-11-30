@@ -12,4 +12,5 @@ public enum ListType {
   ListType(String label) {
     this.label = label;
   }
+
 }

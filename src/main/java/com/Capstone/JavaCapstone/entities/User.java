@@ -9,6 +9,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
 @Entity
 @Getter
@@ -18,8 +19,7 @@ import javax.validation.constraints.Email;
 @Table(name="users")
 public class User {
   @Id
-  @GeneratedValue
-  @JsonManagedReference
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
   @Column(nullable = false)
   private String firstName;
@@ -30,19 +30,12 @@ public class User {
   @Column(nullable = false, unique = true)
   private String email;
 
-//  @Size(min=8)
+  @Size(min=8)
   @NotContainWhitespace
   @ContainSpecial
   @ContainDigit
   @Column(name="passHash", nullable = false)
   private String password;
-
-//  @ManyToMany(mappedBy="users", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-//  private Collection<Group> group;
-
-//  @OneToMany(mappedBy="user", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-//  @JsonManagedReference
-//  private List<Lists> list;
 
 
   public User(String firstName, String lastName, String email, String password) {
