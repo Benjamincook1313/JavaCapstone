@@ -1,9 +1,10 @@
-package com.Capstone.JavaCapstone.entity;
+package com.Capstone.JavaCapstone.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 @Entity
@@ -21,14 +22,10 @@ public class Item {
   @Column(columnDefinition="integer default 1")
   private Integer qty;
   private String units;
-
-//  @Column(columnDefinition = "float default 0.00")
-//  private double price;
   @Column(columnDefinition="boolean default false")
   private Boolean crossedOff;
   private String description;
-
-//  private Date dueDate;
+  @JsonIgnore
   @ManyToOne
   @JoinColumn(name="list_id", nullable = false)
   private Lists list;

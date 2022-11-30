@@ -1,6 +1,6 @@
-package com.Capstone.JavaCapstone.entity.itemTypes;
+package com.Capstone.JavaCapstone.entities.itemTypes;
 
-import com.Capstone.JavaCapstone.entity.Lists;
+import com.Capstone.JavaCapstone.entities.Lists;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +9,6 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Objects;
 
 //@Entity
 @Getter

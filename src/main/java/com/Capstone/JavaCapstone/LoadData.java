@@ -1,6 +1,6 @@
 package com.Capstone.JavaCapstone;
 
-import com.Capstone.JavaCapstone.entity.User;
+import com.Capstone.JavaCapstone.entities.User;
 import com.Capstone.JavaCapstone.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -11,7 +11,7 @@ public class LoadData implements CommandLineRunner{
 //  private final Logger log = new LoggerFactory.getLogger(LoadData.class);
 
     private final UserRepo userRepo;
-//    private final ListsRepo listsRepo;
+//    private final ListRepo listsRepo;
 
     @Autowired
     public LoadData(UserRepo userRepo){
@@ -19,7 +19,7 @@ public class LoadData implements CommandLineRunner{
     }
 
 //    @Autowired
-//    public LoadData(ListsRepo listsRepo){
+//    public LoadData(ListRepo listsRepo){
 //      this.listsRepo = listsRepo;
 //    }
 

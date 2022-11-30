@@ -1,4 +1,4 @@
-package com.Capstone.JavaCapstone.entity.itemTypes;
+package com.Capstone.JavaCapstone.entities.itemTypes;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

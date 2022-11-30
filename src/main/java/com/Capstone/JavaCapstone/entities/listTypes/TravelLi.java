@@ -1,6 +1,6 @@
-package com.Capstone.JavaCapstone.entity.listTypes;
+package com.Capstone.JavaCapstone.entities.listTypes;
 
-import com.Capstone.JavaCapstone.entity.Lists;
+import com.Capstone.JavaCapstone.entities.Lists;
 
 import java.util.Date;
 import java.util.List;

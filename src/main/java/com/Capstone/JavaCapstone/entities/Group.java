@@ -1,4 +1,4 @@
-package com.Capstone.JavaCapstone.entity;
+package com.Capstone.JavaCapstone.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
@@ -14,32 +14,32 @@ import java.util.Collection;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "groups")
 public class Group {
   @Id
   @GeneratedValue
   private Long id;
+
   @Column(unique=true)
-  private String groupName;
+  private String name;
   @OneToOne(cascade=CascadeType.ALL)
-//  @JoinColumn(name="admin1")
   @JsonBackReference
   private User admin1;
 
   @OneToOne(cascade=CascadeType.ALL)
   @JoinColumn(name="admin2")
-//  @JsonBackReference
   private User admin2;
 
   @ManyToMany(cascade=CascadeType.ALL)
   @JoinTable(
       name="group_members",
       joinColumns=@JoinColumn(name="group_id"),
-      inverseJoinColumns=@JoinColumn(name="member")
+      inverseJoinColumns=@JoinColumn(name="member_id")
   )
-  private Collection<User> member;
+  private Collection<User> members;
 
-  public Group(String groupName, User admin1) {
-    this.groupName = groupName;
+  public Group(String name, User admin1) {
+    this.name = name;
     this.admin1 = admin1;
   }
 

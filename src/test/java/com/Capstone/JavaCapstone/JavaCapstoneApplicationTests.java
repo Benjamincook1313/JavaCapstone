@@ -1,8 +1,8 @@
 package com.Capstone.JavaCapstone;
 
-import com.Capstone.JavaCapstone.entity.Lists;
-import com.Capstone.JavaCapstone.entity.Users;
-import com.Capstone.JavaCapstone.repositories.ListsRepo;
+import com.Capstone.JavaCapstone.entities.Lists;
+import com.Capstone.JavaCapstone.entities.Users;
+import com.Capstone.JavaCapstone.repositories.ListRepo;
 import com.Capstone.JavaCapstone.repositories.UserRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ class JavaCapstoneApplicationTests {
   UserRepo usersRepo;
 
 	@Autowired
-	ListsRepo listsRepo;
+	ListRepo listsRepo;
 
 	@Test
 	void contextLoads() {

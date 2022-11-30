@@ -1,12 +1,15 @@
 package com.Capstone.JavaCapstone.dtos;
 
-import com.Capstone.JavaCapstone.entity.User;
+import com.Capstone.JavaCapstone.entities.User;
 import lombok.*;
 
-@Data
+import java.io.Serializable;
+
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+public class UserDto implements Serializable {
   private Long id;
   private String firstName;
   private String lastName;

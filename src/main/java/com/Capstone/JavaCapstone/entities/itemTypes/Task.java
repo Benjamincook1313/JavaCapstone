@@ -1,11 +1,10 @@
-package com.Capstone.JavaCapstone.entity.itemTypes;
+package com.Capstone.JavaCapstone.entities.itemTypes;
 
-import com.Capstone.JavaCapstone.entity.Lists;
+import com.Capstone.JavaCapstone.entities.Lists;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
 import java.util.Date;
 
 //@Entity

@@ -1,6 +1,6 @@
-package com.Capstone.JavaCapstone.entity.listTypes;
+package com.Capstone.JavaCapstone.entities.listTypes;
 
-import com.Capstone.JavaCapstone.entity.itemTypes.Unit;
+import com.Capstone.JavaCapstone.entities.itemTypes.Unit;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
