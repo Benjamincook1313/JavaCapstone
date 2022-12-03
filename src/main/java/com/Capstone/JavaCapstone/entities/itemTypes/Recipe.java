@@ -10,9 +10,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Recipe extends Item {
-  private Unit unit;
+  private Units unit;
 
-  public Recipe(String item, Boolean crossedOff, String description, Lists list, Unit unit) {
+  public Recipe(String item, Boolean crossedOff, String description, Lists list, Units unit) {
     super(item, crossedOff, description, list);
     this.unit = unit;
   }

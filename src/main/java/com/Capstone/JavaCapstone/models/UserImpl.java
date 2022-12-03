@@ -12,16 +12,18 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserImpl implements UserService {
   @Autowired
-  private UserRepo userRepo;
+  UserRepo userRepo;
   @Autowired
   PasswordEncoder encoder;
 
-  // add password validation (minChars, specialChar, hasNum)
-  // add password reset
+  // todo: add password validation (minChars, specialChar, hasNum)
+  // todo: add password reset
+
   @Override
   @Transactional
   public List<String> addUser(UserDto userDto){
@@ -47,45 +49,56 @@ public class UserServiceImpl implements UserService {
       if(encoder.matches(userDto.getPassword(), userOptional.get().getPassword())){
         resp.add("Login Successful!");
         resp.add(String.valueOf(userOptional.get().getId()));
-      }else{
-        resp.add("Incorrect password");
-      }
-    }else{
-      resp.add("Invalid Email");
-    }
+      }else resp.add("Incorrect password");
+    }else resp.add("Invalid Email");
+
     return resp;
   }
 
   // get user account data
-  // secure account data to only be accessed when logged in
   @Override
   @Transactional
-  public Optional<UserDto> userInfo(Long userId){
-    Optional<User> userData = userRepo.findById(userId);
-    userData.ifPresent(user -> user.setPassword(""));
-    return userData.map(UserDto::new);
+  public List<UserDto> getUserInfo(Long userId){
+    Optional<User> userOptional = userRepo.findById(userId);
+    userOptional.ifPresent(user -> user.setPassword(""));
+    return userOptional.stream().map(UserDto::new).collect(Collectors.toList());
   }
+
+  // todo: update password
 
   // update account
   @Override
   @Transactional
-  public void updateUser(Long userId, UserDto userDto){
+  public List<String> updateUser(Long userId, UserDto userDto){
+    List<String> resp = new ArrayList<>();
     Optional<User> userOptional = userRepo.findById(userId);
     userOptional.ifPresent(user -> {
-      user.setEmail(userDto.getEmail());
-      user.setFirstName(userDto.getFirstName());
-      user.setLastName(userDto.getLastName());
-      user.setPassword(userOptional.get().getPassword());
+      if (userDto.getEmail() != null) user.setEmail(userDto.getEmail());
+      else user.setEmail(user.getEmail());
+
+      if (userDto.getFirstName() != null) user.setFirstName(userDto.getFirstName());
+      else user.setFirstName(user.getFirstName());
+
+      if(userDto.getLastName() != null) user.setLastName(userDto.getLastName());
+      else user.setLastName(user.getLastName());
+
+      user.setPassword(user.getPassword());
+      resp.add("Success, account info updated!");
+
       userRepo.saveAndFlush(user);
     });
+
+    return resp;
   }
+
 
   // delete account
   @Override
   @Transactional
-  public void deleteUser(Long userId){
-    Optional<User> userOptional = userRepo.findById(userId);
-    userOptional.ifPresent(user -> userRepo.deleteById(user.getId()));
+  public List<String> deleteUser(Long userId){
+    List<String> resp = new ArrayList<>();
+    userRepo.deleteById(userId);
+    resp.add("Success, User data deleted!");
+    return resp;
   }
-
 }

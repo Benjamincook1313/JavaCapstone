@@ -5,6 +5,7 @@ import com.Capstone.JavaCapstone.entities.Lists;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 public interface ListService {
   // create new list
@@ -13,7 +14,7 @@ public interface ListService {
 
   // get lists
   @Transactional
-  List<Lists> getLists(Long userId);
+  List<ListDto> getLists(Long userId);
 
   // edit list patch mapping
   @Transactional
@@ -22,4 +23,6 @@ public interface ListService {
   // delete list
   @Transactional
   List<String> deleteList(Long listId);
+
+  Optional<Lists> getOne(Long listId);
 }

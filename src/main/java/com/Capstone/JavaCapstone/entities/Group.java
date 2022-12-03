@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -17,26 +18,33 @@ import java.util.Collection;
 @Table(name = "groups")
 public class Group {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-
-  @Column(unique=true)
   private String name;
-  @JsonBackReference
-  @OneToOne(cascade=CascadeType.ALL)
+  @OneToOne(cascade = CascadeType.PERSIST)
+  @JoinColumn
   private User admin1;
 
-  @OneToOne(cascade=CascadeType.ALL)
-  @JoinColumn(name="admin2")
+  @OneToOne(cascade = CascadeType.PERSIST)
+  @JoinColumn
   private User admin2;
 
-  @ManyToMany(cascade=CascadeType.ALL)
+  @ManyToMany(cascade = CascadeType.DETACH)
   @JoinTable(
       name="group_members",
       joinColumns=@JoinColumn(name="group_id"),
       inverseJoinColumns=@JoinColumn(name="member_id")
   )
-  private Collection<User> members;
+  private Set<User> members;
+
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(
+      name="group_lists",
+      joinColumns = @JoinColumn(name = "group_id"),
+      inverseJoinColumns = @JoinColumn(name="list_id")
+  )
+  private Collection<Lists> lists;
+
 
   public Group(String name, User admin1) {
     this.name = name;

@@ -1,6 +1,6 @@
 package com.Capstone.JavaCapstone.entities.listTypes;
 
-import com.Capstone.JavaCapstone.entities.itemTypes.Unit;
+import com.Capstone.JavaCapstone.entities.itemTypes.Units;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +13,7 @@ public class RecipeLi {
 
   private CookType type;
   private double time;
-  private Unit timeUnit;
+  private Units timeUnit;
   private int temp;
 
 }

@@ -4,11 +4,10 @@ import com.Capstone.JavaCapstone.dtos.UserDto;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
-  // add password validation (minChars, specialChar, hasNum)
-  // add password reset
+  // todo: add password validation (minChars, specialChar, hasNum)
+  // todo: add password reset
   @Transactional
   List<String> addUser(UserDto userDto);
 
@@ -16,15 +15,15 @@ public interface UserService {
   List<String> login(UserDto userDto);
 
   // get user account data
-  // secure account data to only be accessed when logged in
+  // todo: secure account data to only be accessed when logged in
   @Transactional
-  Optional<UserDto> userInfo(Long userId);
+  List<UserDto> getUserInfo(Long userId);
 
   // update account
   @Transactional
-  void updateUser(Long userId, UserDto userDto);
+  List<String> updateUser(Long userId, UserDto userDto);
 
   // delete account
   @Transactional
-  void deleteUser(Long userId);
+  List<String> deleteUser(Long userId);
 }

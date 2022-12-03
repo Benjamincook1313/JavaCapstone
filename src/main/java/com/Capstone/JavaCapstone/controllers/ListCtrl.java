@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -17,26 +18,30 @@ public class ListCtrl {
   @Autowired
   private ListRepo repo;
   @Autowired
-  private ListService service;
+  private ListService listService;
 
   @GetMapping("/lists")
-  public List<Lists> getLists(@PathVariable Long userId){
-    return service.getLists(userId);
+  public List<ListDto> getLists(@PathVariable Long userId){
+    return listService.getLists(userId);
   }
 
-  @PostMapping(value="/list", consumes={"application/json"})
+  @GetMapping("/list/{listId}")
+  public Optional<Lists> getOneList(@PathVariable Long listId){
+    return listService.getOne(listId);
+  }
+
+  @PostMapping("/list")
   public List<String> addList(@PathVariable Long userId, @RequestBody ListDto listDto){
-    System.out.println("Adding list");
-    return service.addList(userId, listDto);
+    return listService.addList(userId, listDto);
   }
 
   @PatchMapping("/list/{listId}")
-  public List<String> update(@PathVariable Long listId, @RequestBody ListDto listDto){
-    return service.updateList(listId, listDto);
+  public List<String> updateList(@PathVariable Long listId, @RequestBody ListDto listDto){
+    return listService.updateList(listId, listDto);
   }
 
   @DeleteMapping("/list/{listId}")
   public List<String> deleteList(@PathVariable Long listId){
-    return service.deleteList(listId);
+    return listService.deleteList(listId);
   }
 }

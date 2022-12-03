@@ -1,7 +1,6 @@
 package com.Capstone.JavaCapstone.entities;
 
 import com.Capstone.JavaCapstone.dtos.UserDto;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.github.ankurpathak.password.bean.constraints.ContainDigit;
 import com.github.ankurpathak.password.bean.constraints.ContainSpecial;
 import com.github.ankurpathak.password.bean.constraints.NotContainWhitespace;
@@ -10,6 +9,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 
 @Entity
 @Getter
@@ -19,18 +19,23 @@ import javax.validation.constraints.Size;
 @Table(name="users")
 public class User {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @Column(nullable = false)
   private String firstName;
   @Column(nullable = false)
   private String lastName;
-
   @Email
   @Column(nullable = false, unique = true)
   private String email;
 
-  @Size(min=8)
+  @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+  private Collection<Lists> lists;
+
+  @OneToMany(mappedBy = "lists", cascade = CascadeType.DETACH)
+  private Collection<Group> groups;
+
+  @Size(min=7)
   @NotContainWhitespace
   @ContainSpecial
   @ContainDigit

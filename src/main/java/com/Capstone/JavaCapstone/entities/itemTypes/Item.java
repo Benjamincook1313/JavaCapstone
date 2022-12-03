@@ -22,14 +22,15 @@ public class Item {
   private String item;
   @Column(columnDefinition = "integer default 1")
   private double qty;
+  private Categories category;
   @Column(columnDefinition = "boolean default false")
   private Boolean crossedOff;
   private String description;
   private Lists list;
 
-  private void toggle(){
-    crossedOff = !crossedOff;
-  }
+//  private void toggle(){
+//    crossedOff = !crossedOff;
+//  }
 
   public Item(String item, Boolean crossedOff, String description, Lists list) {
     this.item = item;

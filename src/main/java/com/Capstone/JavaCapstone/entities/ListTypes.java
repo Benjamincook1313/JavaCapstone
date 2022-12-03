@@ -1,6 +1,6 @@
 package com.Capstone.JavaCapstone.entities;
 
-public enum ListType {
+public enum ListTypes {
   ITEM("ITEM"),
   SHOP("SHOP"),
   TASK("TASK"),
@@ -9,7 +9,7 @@ public enum ListType {
 
   public final String label;
 
-  ListType(String label) {
+  ListTypes(String label) {
     this.label = label;
   }
 

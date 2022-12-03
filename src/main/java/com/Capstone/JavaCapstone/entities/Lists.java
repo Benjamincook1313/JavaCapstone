@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -16,24 +18,28 @@ import javax.persistence.*;
 public class Lists {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  @Column(nullable = false)
+  @Column(nullable = false, unique = true)
   private String title;
 
   @Column(columnDefinition="varchar default 'ITEM'", nullable = false)
-  private ListType type;
-  @ManyToOne
+  private ListTypes type;
+  @ManyToOne(cascade = CascadeType.PERSIST)
   @JoinColumn(name="owner_id", nullable = false)
   private User owner;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.DETACH)
   @JoinColumn(name="group_id")
   private Group group;
 
-  public Lists(String title, User user) {
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinColumn(name="list_items")
+  private Set<Item> items;
+
+  public Lists(String title, User owner) {
     this.title = title;
-    this.owner = user;
+    this.owner = owner;
   }
 
   public Lists(ListDto listDto) {
@@ -41,5 +47,6 @@ public class Lists {
     if(listDto.getTitle() != null) this.title = listDto.getTitle();
     if(listDto.getType() != null) this.type = listDto.getType();
     if(listDto.getGroup() != null) this.group = listDto.getGroup();
+    if(listDto.getOwner() != null) this.owner = listDto.getOwner();
   }
 }
