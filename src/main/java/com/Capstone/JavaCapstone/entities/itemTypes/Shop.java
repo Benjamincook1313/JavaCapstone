@@ -14,7 +14,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Shop extends Item {
-  private Units unit;
+  private UnitTypes unit;
   @Column(columnDefinition = "double default 0.00")
   private double price;
 

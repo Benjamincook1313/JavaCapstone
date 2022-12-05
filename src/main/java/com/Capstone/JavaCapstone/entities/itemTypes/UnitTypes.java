@@ -1,8 +1,8 @@
 package com.Capstone.JavaCapstone.entities.itemTypes;
 
-public enum Units {
-  // Units
-  ITEM("ITEM"),
+public enum UnitTypes {
+  // UnitTypes
+  Unit("UNIT"),
   Can("CAN"),
   BOX("BOX"),
   BTL("BOTTLE"),
@@ -39,7 +39,7 @@ public enum Units {
 
   private String unit;
 
-  Units(String unit) {
+  UnitTypes(String unit) {
     unit = unit;
   }
 }

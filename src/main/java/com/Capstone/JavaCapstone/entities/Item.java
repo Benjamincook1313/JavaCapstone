@@ -1,6 +1,7 @@
 package com.Capstone.JavaCapstone.entities;
 
 import com.Capstone.JavaCapstone.dtos.ItemDto;
+import com.Capstone.JavaCapstone.entities.itemTypes.UnitTypes;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,18 +22,19 @@ public class Item {
   private String name;
   @Column(columnDefinition="integer default 1")
   private Integer qty;
-  private String units;
-  @Column(columnDefinition="boolean default false")
+  @Column(columnDefinition = "varchar default 'UNIT'", nullable = false)
+  private UnitTypes unit;
+  @Column(columnDefinition="boolean default false", nullable = false)
   private Boolean crossedOff;
   private String description;
   @ManyToOne(cascade = CascadeType.PERSIST)
   @JoinColumn(name="list_id", nullable = false)
   private Lists list;
 
-  public Item(String name, Integer qty, String units, Boolean crossedOff, String description, Lists list) {
+  public Item(String name, Integer qty, UnitTypes unit, Boolean crossedOff, String description, Lists list) {
     this.name = name;
     this.qty = qty;
-    this.units = units;
+    this.unit = unit;
     this.crossedOff = crossedOff;
     this.description = description;
     this.list = list;
@@ -42,7 +44,7 @@ public class Item {
     if(itemDto.getId() != null) this.id = itemDto.getId();
     if(itemDto.getName() != null) this.name = itemDto.getName();
     if(itemDto.getQty() != null) this.qty = itemDto.getQty();
-    if(itemDto.getUnits() != null) this.units = itemDto.getUnits();
+    if(itemDto.getUnit() != null) this.unit = itemDto.getUnit();
     if(itemDto.getCrossedOff() != null) this.crossedOff = itemDto.getCrossedOff();
     if(itemDto.getDescription() != null) this.description = itemDto.getDescription();
     if(itemDto.getList() != null) this.list = itemDto.getList();
