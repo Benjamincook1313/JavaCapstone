@@ -3,7 +3,7 @@ package com.Capstone.JavaCapstone.dtos;
 import com.Capstone.JavaCapstone.entities.Group;
 import com.Capstone.JavaCapstone.entities.Lists;
 import com.Capstone.JavaCapstone.entities.User;
-import com.Capstone.JavaCapstone.entities.ListTypes;
+import com.Capstone.JavaCapstone.enums.ListTypes;
 import lombok.*;
 
 import java.io.Serializable;
@@ -25,9 +25,8 @@ public class ListDto implements Serializable {
     if(list.getId() != null) this.id = list.getId();
     if(list.getTitle() != null) this.title = list.getTitle();
     if(list.getType() != null) this.type = list.getType();
-    if(list.getGroup() != null) this.group = list.getGroup();
     if(list.getOwner() != null) this.owner = list.getOwner();
-
+    if(list.getGroup() != null) this.group = list.getGroup();
   }
 
 }

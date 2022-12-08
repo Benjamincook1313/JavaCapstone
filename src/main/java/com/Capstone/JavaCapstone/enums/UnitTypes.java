@@ -1,16 +1,23 @@
-package com.Capstone.JavaCapstone.entities.itemTypes;
+package com.Capstone.JavaCapstone.enums;
 
 public enum UnitTypes {
   // UnitTypes
-  Unit("UNIT"),
-  Can("CAN"),
+  UNIT("UNIT"),
+  CAN("CAN"),
   BOX("BOX"),
   BTL("BOTTLE"),
   CASE("CASE"),
+  PAIR("PAIR"),
+  PKG("PKG"),
+  BAG("BAG"),
+  BSHL("BSHL"),
+  PEC("PEC"),
+  BCH("BCH"),
+  BULK("BULK"),
   // Weight
   LB("LB"),
   OZ("OZ"),
-  G("G"),
+  GM("GM"),
   // Vol
   GAL("Gal"),
   LTR("LTR"),

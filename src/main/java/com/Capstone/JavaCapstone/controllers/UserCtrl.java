@@ -5,24 +5,19 @@ import com.Capstone.JavaCapstone.dtos.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/user")
+@RequestMapping("/v1/user")
 public class UserCtrl {
   @Autowired
   private UserService userService;
   @Autowired
-  PasswordEncoder encoder;
-
-  public UserCtrl() {
-  }
+  private PasswordEncoder passwordEncoder;
 
   @PostMapping("/register")
   public List<String> addUser(@RequestBody UserDto userDto){
-    String hashPass = encoder.encode(userDto.getPassword());
+    String hashPass = passwordEncoder.encode(userDto.getPassword());
     userDto.setPassword(hashPass);
     return userService.addUser(userDto);
   }

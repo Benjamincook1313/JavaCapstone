@@ -1,4 +1,4 @@
-package com.Capstone.JavaCapstone.entities;
+package com.Capstone.JavaCapstone.enums;
 
 public enum ListTypes {
   ITEM("ITEM"),

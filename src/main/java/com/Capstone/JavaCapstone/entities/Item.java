@@ -1,7 +1,8 @@
 package com.Capstone.JavaCapstone.entities;
 
 import com.Capstone.JavaCapstone.dtos.ItemDto;
-import com.Capstone.JavaCapstone.entities.itemTypes.UnitTypes;
+import com.Capstone.JavaCapstone.enums.Categories;
+import com.Capstone.JavaCapstone.enums.UnitTypes;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,24 +21,24 @@ public class Item {
   private Long id;
   @Column(nullable = false)
   private String name;
-  @Column(columnDefinition="integer default 1")
   private Integer qty;
-  @Column(columnDefinition = "varchar default 'UNIT'", nullable = false)
+  @Column(nullable = false)
   private UnitTypes unit;
-  @Column(columnDefinition="boolean default false", nullable = false)
+  @Column(nullable = false)
   private Boolean crossedOff;
   private String description;
-  @ManyToOne(cascade = CascadeType.PERSIST)
+  private Categories category;
+  @ManyToOne(cascade = CascadeType.DETACH)
   @JoinColumn(name="list_id", nullable = false)
   private Lists list;
 
-  public Item(String name, Integer qty, UnitTypes unit, Boolean crossedOff, String description, Lists list) {
+  public Item(String name, Integer qty, UnitTypes unit, Boolean crossedOff, Categories category, String description) {
     this.name = name;
     this.qty = qty;
     this.unit = unit;
     this.crossedOff = crossedOff;
+    this.category = category;
     this.description = description;
-    this.list = list;
   }
 
   public Item(ItemDto itemDto){
@@ -46,6 +47,7 @@ public class Item {
     if(itemDto.getQty() != null) this.qty = itemDto.getQty();
     if(itemDto.getUnit() != null) this.unit = itemDto.getUnit();
     if(itemDto.getCrossedOff() != null) this.crossedOff = itemDto.getCrossedOff();
+    if(itemDto.getCategory() != null) this.category = itemDto.getCategory();
     if(itemDto.getDescription() != null) this.description = itemDto.getDescription();
     if(itemDto.getList() != null) this.list = itemDto.getList();
   }

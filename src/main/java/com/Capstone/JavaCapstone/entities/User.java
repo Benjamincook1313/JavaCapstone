@@ -29,10 +29,12 @@ public class User {
   @Column(nullable = false, unique = true)
   private String email;
 
-  @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinColumn(name="lists")
   private Collection<Lists> lists;
 
-  @OneToMany(mappedBy = "lists", cascade = CascadeType.DETACH)
+  @OneToMany(cascade = CascadeType.DETACH)
+  @JoinColumn(name="groups")
   private Collection<Group> groups;
 
   @Size(min=7)
@@ -43,11 +45,12 @@ public class User {
   private String password;
 
 
-  public User(String firstName, String lastName, String email, String password) {
+  public User(String firstName, String lastName, String email, String password, Collection<Lists> lists) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.password = password;
+    this.lists = lists;
   }
 
   public User(UserDto userDto) {
@@ -55,5 +58,6 @@ public class User {
     if(userDto.getLastName() != null) this.lastName = userDto.getLastName();
     if(userDto.getEmail() != null) this.email = userDto.getEmail();
     if(userDto.getPassword() != null) this.password = userDto.getPassword();
+    if(userDto.getLists() != null) this.lists = userDto.getLists();
   }
 }

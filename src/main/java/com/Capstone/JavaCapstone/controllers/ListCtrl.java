@@ -12,7 +12,7 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("api/v1/user/{userId}")
+@RequestMapping("/v1/user/{userId}")
 public class ListCtrl {
 
   @Autowired
@@ -31,7 +31,7 @@ public class ListCtrl {
   }
 
   @PostMapping("/list")
-  public List<String> addList(@PathVariable Long userId, @RequestBody ListDto listDto){
+  public List<String> newList(@PathVariable Long userId, @RequestBody ListDto listDto){
     return listService.addList(userId, listDto);
   }
 

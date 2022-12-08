@@ -1,6 +1,7 @@
 package com.Capstone.JavaCapstone.entities.itemTypes;
 
 import com.Capstone.JavaCapstone.entities.Lists;
+import com.Capstone.JavaCapstone.enums.UnitTypes;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

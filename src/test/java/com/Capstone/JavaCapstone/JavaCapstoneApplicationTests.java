@@ -1,7 +1,5 @@
 package com.Capstone.JavaCapstone;
 
-import com.Capstone.JavaCapstone.entities.Item;
-import com.Capstone.JavaCapstone.entities.ListTypes;
 import com.Capstone.JavaCapstone.entities.Lists;
 import com.Capstone.JavaCapstone.entities.User;
 import com.Capstone.JavaCapstone.repositories.ListRepo;

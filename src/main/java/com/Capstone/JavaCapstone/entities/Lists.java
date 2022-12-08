@@ -1,13 +1,14 @@
 package com.Capstone.JavaCapstone.entities;
 
 import com.Capstone.JavaCapstone.dtos.ListDto;
+import com.Capstone.JavaCapstone.enums.ListTypes;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -23,7 +24,7 @@ public class Lists {
   @Column(nullable = false, unique = true)
   private String title;
 
-  @Column(columnDefinition="varchar default 'ITEM'", nullable = false)
+  @Column( nullable = false)
   private ListTypes type;
   @ManyToOne(cascade = CascadeType.PERSIST)
   @JoinColumn(name="owner_id", nullable = false)
@@ -46,7 +47,7 @@ public class Lists {
     if(listDto.getId() != null) this.id = listDto.getId();
     if(listDto.getTitle() != null) this.title = listDto.getTitle();
     if(listDto.getType() != null) this.type = listDto.getType();
-    if(listDto.getGroup() != null) this.group = listDto.getGroup();
     if(listDto.getOwner() != null) this.owner = listDto.getOwner();
+    if(listDto.getGroup() != null) this.group = listDto.getGroup();
   }
 }

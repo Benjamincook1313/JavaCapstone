@@ -2,7 +2,8 @@ package com.Capstone.JavaCapstone.dtos;
 
 import com.Capstone.JavaCapstone.entities.Item;
 import com.Capstone.JavaCapstone.entities.Lists;
-import com.Capstone.JavaCapstone.entities.itemTypes.UnitTypes;
+import com.Capstone.JavaCapstone.enums.Categories;
+import com.Capstone.JavaCapstone.enums.UnitTypes;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class ItemDto implements Serializable {
   private Integer qty;
   private UnitTypes unit;
   private Boolean crossedOff;
+  private Categories category;
   private String description;
   private Lists list;
 
@@ -29,6 +31,7 @@ public class ItemDto implements Serializable {
     if(item.getQty() != null) this.qty = item.getQty();
     if(item.getUnit() != null) this.unit = item.getUnit();
     if(item.getCrossedOff() != null) this.crossedOff = item.getCrossedOff();
+    if(item.getCategory() != null) this.category = item.getCategory();
     if(item.getDescription() != null) this.description = item.getDescription();
     if(item.getList() != null) this.list = item.getList();
   }

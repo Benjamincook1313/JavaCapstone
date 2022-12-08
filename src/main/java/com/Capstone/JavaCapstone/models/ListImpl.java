@@ -1,7 +1,7 @@
 package com.Capstone.JavaCapstone.models;
 
 import com.Capstone.JavaCapstone.dtos.ListDto;
-import com.Capstone.JavaCapstone.entities.ListTypes;
+import com.Capstone.JavaCapstone.enums.ListTypes;
 import com.Capstone.JavaCapstone.entities.Lists;
 import com.Capstone.JavaCapstone.entities.User;
 import com.Capstone.JavaCapstone.repositories.ListRepo;

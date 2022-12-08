@@ -1,4 +1,4 @@
-package com.Capstone.JavaCapstone.entities.listTypes;
+package com.Capstone.JavaCapstone.enums;
 
 public enum CookType {
   BAKE,
