@@ -26,16 +26,16 @@ public class Lists {
 
   @Column( nullable = false)
   private ListTypes type;
-  @ManyToOne(cascade = CascadeType.PERSIST)
+  @ManyToOne
   @JoinColumn(name="owner_id", nullable = false)
   private User owner;
 
-  @ManyToOne(cascade = CascadeType.DETACH)
+  @ManyToOne
   @JoinColumn(name="group_id")
   private Group group;
 
-  @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name="list_items")
+  @OneToMany(mappedBy = "list", cascade = CascadeType.ALL)
+  @Column(name="list_items")
   private Set<Item> items;
 
   public Lists(String title, User owner) {

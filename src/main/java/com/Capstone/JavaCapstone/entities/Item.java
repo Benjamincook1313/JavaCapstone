@@ -28,7 +28,7 @@ public class Item {
   private Boolean crossedOff;
   private String description;
   private Categories category;
-  @ManyToOne(cascade = CascadeType.DETACH)
+  @ManyToOne
   @JoinColumn(name="list_id", nullable = false)
   private Lists list;
 

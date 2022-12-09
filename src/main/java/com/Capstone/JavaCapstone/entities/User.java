@@ -29,8 +29,7 @@ public class User {
   @Column(nullable = false, unique = true)
   private String email;
 
-  @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name="lists")
+  @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
   private Collection<Lists> lists;
 
   @OneToMany(cascade = CascadeType.DETACH)
