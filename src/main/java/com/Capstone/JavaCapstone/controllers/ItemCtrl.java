@@ -38,7 +38,7 @@ public class ItemCtrl {
 
   // delete item
   @DeleteMapping("/item/{itemId}")
-  public List<String> deleteIt(@PathVariable Long itemId){
-    return itemService.deleteItem(itemId);
+  public List<String> deleteIt(@PathVariable Long itemId, @PathVariable Long listId){
+    return itemService.deleteItem(itemId, listId);
   }
 }

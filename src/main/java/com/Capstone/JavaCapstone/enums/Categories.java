@@ -2,7 +2,6 @@ package com.Capstone.JavaCapstone.enums;
 
 public enum Categories {
 
-  NONE("NONE"),
   PRODUCE("PRODUCE"),
   BAKING("BAKING"),
   BAKERY("BAKERY"),

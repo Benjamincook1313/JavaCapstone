@@ -1,7 +1,7 @@
 package com.Capstone.JavaCapstone.enums;
 
 public enum UnitTypes {
-  // UnitTypes
+  // Units
   UNIT("UNIT"),
   CAN("CAN"),
   BOX("BOX"),
@@ -13,28 +13,36 @@ public enum UnitTypes {
   BSHL("BSHL"),
   PEC("PEC"),
   BCH("BCH"),
-  BULK("BULK"),
+  BKT("BKT"),
+
   // Weight
   LB("LB"),
   OZ("OZ"),
   GM("GM"),
-  // Vol
+
+  // Volume
   GAL("Gal"),
   LTR("LTR"),
   QT("QT"),
   PT("PT"),
-  //Size
+  CP("CP"),
+  TBLS("TBLS"),
+  TSP("TSP"),
+
+  //Sizes
   XS("XS"),
   S("S"),
   M("M"),
   L("L"),
   XL("XL"),
   XXL("XXL"),
+
   // Dist / Length
   MI("MI"),
   IN("IN"),
   FT("FT"),
   YD("YD"),
+
   // TIME
   MIN("MIN"),
   SEC("SEC"),

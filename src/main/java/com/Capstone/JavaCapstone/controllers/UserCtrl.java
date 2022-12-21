@@ -19,14 +19,17 @@ public class UserCtrl {
   public List<String> addUser(@RequestBody UserDto userDto){
     String hashPass = passwordEncoder.encode(userDto.getPassword());
     userDto.setPassword(hashPass);
-    return userService.addUser(userDto);
+    if(hashPass != null) return userService.addUser(userDto);
+    return null;
   }
 
   @PostMapping("/login")
   public List<String> login(@RequestBody UserDto userDto){
-
     return userService.login(userDto);
   }
+
+  // TODO: check if user is logged in
+  // TODO: logout user
 
   @GetMapping("/account/{userId}")
   public List<UserDto> getUserInfo(@PathVariable Long userId){

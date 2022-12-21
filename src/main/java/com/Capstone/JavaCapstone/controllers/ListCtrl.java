@@ -26,7 +26,7 @@ public class ListCtrl {
   }
 
   @GetMapping("/list/{listId}")
-  public Optional<Lists> getOneList(@PathVariable Long listId){
+  public ListDto getOne(@PathVariable Long listId){
     return listService.getOne(listId);
   }
 

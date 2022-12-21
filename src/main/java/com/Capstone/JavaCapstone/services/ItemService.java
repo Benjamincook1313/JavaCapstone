@@ -25,5 +25,5 @@ public interface ItemService {
 
   // delete item
   @Transactional
-  List<String> deleteItem(Long itemId);
+  List<String> deleteItem(Long itemId, Long listId);
 }

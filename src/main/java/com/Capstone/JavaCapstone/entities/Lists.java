@@ -26,6 +26,8 @@ public class Lists {
 
   @Column( nullable = false)
   private ListTypes type;
+  private Integer itemCount;
+
   @ManyToOne
   @JoinColumn(name="owner_id", nullable = false)
   private User owner;
@@ -47,6 +49,7 @@ public class Lists {
     if(listDto.getId() != null) this.id = listDto.getId();
     if(listDto.getTitle() != null) this.title = listDto.getTitle();
     if(listDto.getType() != null) this.type = listDto.getType();
+    if(listDto.getItemCount() != null) this.itemCount = listDto.getItemCount();
     if(listDto.getOwner() != null) this.owner = listDto.getOwner();
     if(listDto.getGroup() != null) this.group = listDto.getGroup();
   }

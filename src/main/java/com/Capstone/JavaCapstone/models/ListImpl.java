@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +36,7 @@ public class ListImpl implements ListService {
     Lists list = new Lists(listDto);
     if(list.getType() == null) list.setType(ListTypes.valueOf("ITEM"));
     userOptional.ifPresent(user -> {
-      user.setPassword("");
+      list.setItemCount(0);
       list.setOwner(user);
       resp.add("Success, list created");
 
@@ -49,26 +50,44 @@ public class ListImpl implements ListService {
   @Override
   @Transactional
   public List<ListDto> getLists(Long userId){
-    List<Lists> lists = listRepo.findAllByOwnerId(userId);
-    List<ListDto> listDtoList = new ArrayList<>();
-    if(lists.isEmpty()) return null;
-    for(Lists list: lists){
-      list.getOwner().setLists(new ArrayList<>());
-      listDtoList.add(new ListDto(list));
+    List<Lists> listLists = listRepo.findAllByOwnerId(userId);
+    List<ListDto> listDtoLists = new ArrayList<>();
+    if(listLists.isEmpty()) return null;
+    for(Lists list: listLists) {
+      list.getOwner().setPassword("");
+      if(list.getGroup() != null) {
+        list.getGroup().setAdmin1(new User());
+        list.getGroup().setAdmin2(new User());
+        list.getGroup().setMembers(new HashSet<>());
+      }
+      list.setItems(new HashSet<>());
+      listDtoLists.add(new ListDto(list));
     }
-    return listDtoList;
+    return listDtoLists;
   }
 
   // get single list
   @Override
   @Transactional
-  public Optional<Lists> getOne(Long listId){
-    Optional<Lists> listOptional = listRepo.findById(listId);
-    if(listOptional.isPresent()) {
-      listOptional.get().getOwner().setLists(new ArrayList<>());
-      return listOptional;
-    }
-    return listOptional;
+  public ListDto getOne(Long listId){
+    Optional<Lists> listOpt = listRepo.findById(listId);
+    listOpt.ifPresent(list -> {
+      ListDto listDto = new ListDto(list);
+      listDto.getOwner().setLists(new ArrayList<>());
+      listDto.getOwner().setGroups(new ArrayList<>());
+      listDto.getOwner().setPassword("");
+
+      if(listDto.getGroup() != null){
+        listDto.getGroup().setAdmin1(new User());
+        listDto.getGroup().setAdmin2(new User());
+        listDto.getGroup().setLists(new ArrayList<>());
+        listDto.getGroup().setMembers(new HashSet<>());
+      }
+
+      return listDto;
+    });
+
+    return null;
   }
 
   // edit list patch mapping
