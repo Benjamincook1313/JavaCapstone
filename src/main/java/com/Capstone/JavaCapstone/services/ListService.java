@@ -24,5 +24,6 @@ public interface ListService {
   @Transactional
   List<String> deleteList(Long listId);
 
-  ListDto getOne(Long listId);
+  @Transactional
+  List<ListDto> getOne(Long listId);
 }

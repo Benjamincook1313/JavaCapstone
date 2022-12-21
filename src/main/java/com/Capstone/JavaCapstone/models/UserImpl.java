@@ -56,15 +56,15 @@ public class UserImpl implements UserService {
   @Transactional
   public List<UserDto> getUserInfo(Long userId){
     Optional<User> userOpt = userRepo.findById(userId);
-    List<UserDto> userList = new ArrayList<>();
+    List<UserDto> userDtoList = new ArrayList<>();
     userOpt.ifPresent(user -> {
       UserDto userDto = new UserDto(user);
       userDto.setLists(new ArrayList<>());
       userDto.setPassword("");
-      userList.add(userDto);
+      userDtoList.add(userDto);
     });
 
-    return userList;
+    return userDtoList;
   }
 
   // todo: update password

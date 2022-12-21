@@ -38,6 +38,7 @@ public class ListImpl implements ListService {
     userOptional.ifPresent(user -> {
       list.setItemCount(0);
       list.setOwner(user);
+//      list.getOwner().setPassword(user.getPassword());
       resp.add("Success, list created");
 
       listRepo.saveAndFlush(list);
@@ -54,14 +55,16 @@ public class ListImpl implements ListService {
     List<ListDto> listDtoLists = new ArrayList<>();
     if(listLists.isEmpty()) return null;
     for(Lists list: listLists) {
-      list.getOwner().setPassword("");
-      if(list.getGroup() != null) {
-        list.getGroup().setAdmin1(new User());
-        list.getGroup().setAdmin2(new User());
-        list.getGroup().setMembers(new HashSet<>());
+      ListDto listDto = new ListDto(list);
+//      listDto.getOwner().setPassword("");
+      listDto.getOwner().setLists(new ArrayList<>());
+      listDto.getOwner().setGroups(new HashSet<>());
+      if(listDto.getGroup() != null) {
+        listDto.getGroup().setAdmin1(new User());
+        listDto.getGroup().setAdmin2(new User());
+        listDto.getGroup().setMembers(new HashSet<>());
       }
-      list.setItems(new HashSet<>());
-      listDtoLists.add(new ListDto(list));
+      listDtoLists.add(listDto);
     }
     return listDtoLists;
   }
@@ -69,25 +72,24 @@ public class ListImpl implements ListService {
   // get single list
   @Override
   @Transactional
-  public ListDto getOne(Long listId){
+  public List<ListDto> getOne(Long listId){
     Optional<Lists> listOpt = listRepo.findById(listId);
+    List<ListDto> listDtoList = new ArrayList<>();
     listOpt.ifPresent(list -> {
       ListDto listDto = new ListDto(list);
       listDto.getOwner().setLists(new ArrayList<>());
       listDto.getOwner().setGroups(new ArrayList<>());
       listDto.getOwner().setPassword("");
-
       if(listDto.getGroup() != null){
         listDto.getGroup().setAdmin1(new User());
         listDto.getGroup().setAdmin2(new User());
         listDto.getGroup().setLists(new ArrayList<>());
         listDto.getGroup().setMembers(new HashSet<>());
       }
-
-      return listDto;
+      listDtoList.add(listDto);
     });
 
-    return null;
+    return listDtoList;
   }
 
   // edit list patch mapping

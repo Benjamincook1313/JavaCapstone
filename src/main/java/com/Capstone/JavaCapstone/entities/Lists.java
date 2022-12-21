@@ -28,7 +28,7 @@ public class Lists {
   private ListTypes type;
   private Integer itemCount;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.DETACH)
   @JoinColumn(name="owner_id", nullable = false)
   private User owner;
 

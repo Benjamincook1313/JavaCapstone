@@ -4,6 +4,7 @@ import com.Capstone.JavaCapstone.dtos.ItemDto;
 import com.Capstone.JavaCapstone.entities.Group;
 import com.Capstone.JavaCapstone.entities.Item;
 import com.Capstone.JavaCapstone.entities.Lists;
+import com.Capstone.JavaCapstone.entities.User;
 import com.Capstone.JavaCapstone.enums.Categories;
 import com.Capstone.JavaCapstone.enums.UnitTypes;
 import com.Capstone.JavaCapstone.repositories.ItemRepo;
@@ -39,6 +40,7 @@ public class ItemImpl implements ItemService {
     listOptional.ifPresent(list -> {
       list.setItemCount(list.getItemCount() + 1);
       item.setList(list);
+      item.getList().getOwner().setPassword(item.getList().getOwner().getPassword());
       itemRepo.saveAndFlush(item);
       listRepo.saveAndFlush(list);
       resp.add("Success, item added!");
@@ -54,12 +56,19 @@ public class ItemImpl implements ItemService {
     List<Item> itemList = itemRepo.findAllByListId(listId);
     if(itemList.isEmpty()) return null;
     List<ItemDto> itemDtoList = new ArrayList<>();
-    for (Item item : itemList) itemDtoList.add(new ItemDto(item));
-    for(ItemDto item: itemDtoList){
-      item.getList().getOwner().setLists(new ArrayList<>());
-      item.getList().setItems(new HashSet<>());
-      if (item.getList().getGroup() != null) item.getList().setGroup(new Group());
-      item.getList().getOwner().setPassword("");
+    for(Item item: itemList){
+      ItemDto itemDto = new ItemDto(item);
+      itemDto.getList().getOwner().setLists(new ArrayList<>());
+//      itemDto.getList().getOwner().setPassword("");
+      itemDto.getList().setItems(new HashSet<>());
+      if (itemDto.getList().getGroup() != null) {
+        itemDto.getList().getGroup().setAdmin1(new User());
+        itemDto.getList().getGroup().setAdmin2(new User());
+        itemDto.getList().getGroup().setMembers(new HashSet<>());
+        itemDto.getList().getGroup().setLists(new ArrayList<>());
+      }
+
+      itemDtoList.add(itemDto);
     }
 
     return itemDtoList;
